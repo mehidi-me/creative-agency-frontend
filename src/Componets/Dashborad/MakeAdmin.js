@@ -1,5 +1,6 @@
 import { Button, CircularProgress, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
+import ServerUrl from '../../ServerUrl';
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +53,7 @@ const handleInputChange = (e) => {
      
       e.target.reset()
       setLoading(true)
-      fetch('http://localhost:5000/userlist', {
+      fetch(`${ServerUrl}/userlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

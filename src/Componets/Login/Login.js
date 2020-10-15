@@ -6,6 +6,7 @@ import Logo from "../../images/logo.png";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import FirebaseConfig from '../../Config/FirebaseConfig';
+import ServerUrl from "../../ServerUrl";
 
 firebase.initializeApp(FirebaseConfig);
 
@@ -51,7 +52,7 @@ const Login = () => {
             
       const {displayName, email, photoURL} = result.user;
       
-      fetch('http://localhost:5000/userlist', {
+      fetch(`${ServerUrl}/userlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
