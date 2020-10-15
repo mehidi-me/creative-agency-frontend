@@ -1,0 +1,56 @@
+.sidbar {
+    background: #fff;
+    width: 12%;
+    min-height: 100vh;
+    padding: 0 0 0 2%;
+    float: left;
+    overflow: hidden;
+}
+
+.admin-logo {
+    width: 160px;
+    padding-top: 8px;
+}
+
+.icon {
+    width: 18px;
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.sidbar ul {
+    padding: 48px 0 0 20px;
+}
+
+.sidbar li {
+    margin: 25px 0;
+}
+
+.sidbar li a {
+    font-size: 16px;
+    color: #111111;
+    display: flex;
+}
+
+.sidbar li a:hover {
+    color: #009444;
+    transition: .5s ease;
+}
+.formtitle {
+    width: 86%;
+    background: #fff;
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.formtitle h3 {
+    margin: 0 0 0 50px;
+}
+ 
+.avater {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 8px;
+}

@@ -1,0 +1,13 @@
+.slick-arrow {
+    display: none !important;
+}
+.slick-dots {
+    position: inherit !important;
+    margin-top: 48px !important;
+}
+.slick-dots li.slick-active button:before {
+    color: #FBD062 !important;
+}
+.slick-dots li button:before {
+    font-size: 20px !important;
+}
