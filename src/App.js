@@ -54,19 +54,19 @@ function App() {
       id: 1,
       icon: <LocalGroceryStoreIcon />,
       item: "Order",
-      path: "/order"
+      path: "/order",
     },
     {
       id: 2,
       icon: <StorageIcon />,
       item: "Service list",
-      path: "/servicelist"
+      path: "/servicelist",
     },
     {
       id: 3,
       icon: <RateReviewIcon />,
       item: "Review",
-      path: "/review"
+      path: "/review",
     },
   ];
 
@@ -75,19 +75,19 @@ function App() {
       id: 1,
       icon: <LocalGroceryStoreIcon />,
       item: "All Service",
-      path: "/serviceall"
+      path: "/serviceall",
     },
     {
       id: 2,
       icon: <StorageIcon />,
       item: "Add Service",
-      path: "/serviceadd"
+      path: "/serviceadd",
     },
     {
       id: 3,
       icon: <RateReviewIcon />,
       item: "Make Admin",
-      path: "/makeadmin"
+      path: "/makeadmin",
     },
   ];
   return (
@@ -104,8 +104,6 @@ function App() {
               <Login></Login>
             </Route>
 
-
-
             <ClientPrivate exact path="/order">
               <Sidbar title="Order" sidbar={sidbarClient}></Sidbar>
               <OrderForm></OrderForm>
@@ -121,10 +119,6 @@ function App() {
               <Review></Review>
             </ClientPrivate>
 
-
-
-
-
             <AdminPrivate exact path="/serviceall">
               <Sidbar title="All Service" sidbar={sidbarAdmin}></Sidbar>
               <ServiceAll></ServiceAll>
@@ -139,7 +133,6 @@ function App() {
               <Sidbar title="Make Admin" sidbar={sidbarAdmin}></Sidbar>
               <MakeAdmin></MakeAdmin>
             </AdminPrivate>
-
           </Switch>
         </Router>
       </ThemeProvider>

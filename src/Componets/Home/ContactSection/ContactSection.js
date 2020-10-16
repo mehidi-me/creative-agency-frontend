@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   subtitle1: {
     margin: "24px 0",
     width: "85%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
   },
   headerFrame: {
     width: "90%",
@@ -37,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.secondary.main,
-    textAlign:'center',
-    fontSize: '16px',
-    padding: '40px 0'
-  }
+    textAlign: "center",
+    fontSize: "16px",
+    padding: "40px 0",
+  },
 }));
 const HeaderSection = () => {
   const classes = useStyles();

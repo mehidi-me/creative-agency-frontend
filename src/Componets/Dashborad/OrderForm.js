@@ -35,7 +35,7 @@ const OrderForm = () => {
     email: "",
     description: "",
     userEmail,
-    action:'0'
+    action: "0",
   });
 
   const [loading, setLoading] = useState(false);
@@ -92,7 +92,7 @@ const OrderForm = () => {
             email: "",
             description: "",
             userEmail,
-            action:'0'
+            action: "0",
           });
           setLoading(false);
         })
@@ -125,13 +125,20 @@ const OrderForm = () => {
           style={{ width: "110%" }}
           name="id"
         >
-            <option value="" selected disabled>Select Service</option>
-          {cardData &&
+          <option value="" selected disabled>
+            Select Service
+          </option>
+          {cardData ? (
             cardData.map((v) => (
               <option key={v._id} value={v._id}>
                 {v.title}
               </option>
-            ))}
+            ))
+          ) : (
+            <option value="" selected disabled>
+              Loading...
+            </option>
+          )}
         </select>
         <textarea
           className={classes.inputBox}

@@ -1,11 +1,11 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import GoogleButton from "react-google-button";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Logo from "../../images/logo.png";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import FirebaseConfig from '../../Config/FirebaseConfig';
+import FirebaseConfig from "../../Config/FirebaseConfig";
 import ServerUrl from "../../ServerUrl";
 
 firebase.initializeApp(FirebaseConfig);
@@ -36,50 +36,52 @@ const useStyles = makeStyles((theme) => ({
     margin: "18px auto",
   },
   h1: {
-      marginBottom: '38px'
-  }
+    marginBottom: "38px",
+  },
 }));
 
 const Login = () => {
   const classes = useStyles();
   let history = useHistory();
-  
-   
-  
+
   const googleLogin = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(result => {
-            
-      const {displayName, email, photoURL} = result.user;
-      
-      fetch(`${ServerUrl}/userlist`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({email,role:0})
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const { displayName, email, photoURL } = result.user;
+
+        fetch(`${ServerUrl}/userlist`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, role: 0 }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.role) {
+              window.localStorage.setItem(
+                "userInfo",
+                JSON.stringify({ displayName, email, photoURL, role: 1 })
+              );
+              history.push("/serviceall");
+            } else {
+              window.localStorage.setItem(
+                "userInfo",
+                JSON.stringify({ displayName, email, photoURL, role: 0 })
+              );
+              history.push("/order");
+            }
+          })
+          .catch((err) => console.log("error:", err));
       })
-      .then(res => res.json())
-      .then(data => {
-
-        if(data.role){
-          window.localStorage.setItem('userInfo', JSON.stringify({displayName, email, photoURL, role:1}));
-      history.push('/serviceall');
-        }else{
-          window.localStorage.setItem('userInfo', JSON.stringify({displayName, email, photoURL, role:0}));
-          history.push('/order');
-        }
-
-
-
-      })
-      .catch(err => console.log('error:',err))
-    }).catch((error) => {
-      const errorMessage = error.message;
-      console.log(errorMessage)
-    });
-  }
-  
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
 
   return (
     <div className={classes.root}>
@@ -91,7 +93,7 @@ const Login = () => {
           Login With
         </Typography>
         <GoogleButton
-        label="Continue with Google"
+          label="Continue with Google"
           className={classes.googleBtn}
           onClick={googleLogin}
         />

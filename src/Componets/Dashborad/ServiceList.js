@@ -1,6 +1,7 @@
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ServerUrl from "../../ServerUrl";
+import BounceLoader from "react-spinners/BounceLoader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,10 @@ const ServiceList = () => {
               <Grid key={v._id} item md={4} xs={12}>
                 <Paper className={classes.Card} elevation={1}>
                   <div className={classes.icon}>
-                    <img src={`${ServerUrl}/${v.service[0].path}`} alt="icon" />
+                    <img
+                      src={`data:image/png;base64,${v.service[0].path.img}`}
+                      alt="icon"
+                    />
                   </div>
                   <Typography
                     variant="h6"
@@ -61,7 +65,7 @@ const ServiceList = () => {
                   >
                     {v.service[0].description}
                   </Typography>
-                  {v.action === '2' && (
+                  {v.action === "2" && (
                     <span
                       style={{
                         position: "absolute",
@@ -77,7 +81,7 @@ const ServiceList = () => {
                     </span>
                   )}
 
-                  {v.action === '1' && (
+                  {v.action === "1" && (
                     <span
                       style={{
                         position: "absolute",
@@ -92,7 +96,7 @@ const ServiceList = () => {
                       On Going
                     </span>
                   )}
-                  {v.action === '0' && (
+                  {v.action === "0" && (
                     <span
                       style={{
                         position: "absolute",
@@ -111,7 +115,13 @@ const ServiceList = () => {
               </Grid>
             ))
           ) : (
-            <h2>Loading...</h2>
+            <div style={{ width: "100px", margin: "auto" }}>
+              <BounceLoader
+                size={100}
+                color={"#FBD062"}
+                loading={true}
+              ></BounceLoader>
+            </div>
           )}
         </Grid>
       </div>

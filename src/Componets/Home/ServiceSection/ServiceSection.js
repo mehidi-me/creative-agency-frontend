@@ -4,6 +4,7 @@ import ServiceCard from "./ServiceCard/ServiceCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import ServerUrl from "../../../ServerUrl";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const useStyles = makeStyles((theme) => ({
   serviceMain: {
@@ -17,16 +18,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ServiceSection = () => {
   const classes = useStyles();
-  const [cardData, setCardData] = useState(null)
+  const [cardData, setCardData] = useState("");
 
-useEffect(() => {
-
-  fetch(`${ServerUrl}/getservice`)
-  .then(res => res.json())
-  .then(data => setCardData(data))
-  .catch(err => console.log(err))
-
-},[])
+  useEffect(() => {
+    fetch(`${ServerUrl}/getservice`)
+      .then((res) => res.json())
+      .then((data) => setCardData(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className={classes.serviceMain}>
@@ -40,15 +39,25 @@ useEffect(() => {
         </Typography>
 
         <Grid container spacing={3}>
-          
-            {
-              cardData ? cardData.map(v => (
-                <Grid item xs={12} md={6} lg={4} key={v._id}>
-                  <ServiceCard path={`${ServerUrl}/${v.path}`}  title={v.title} description={v.description}></ServiceCard>
-                  </Grid>
-              )) : <h2>Loading...</h2>
-            }
-          
+          {cardData ? (
+            cardData.map((v) => (
+              <Grid item xs={12} md={6} lg={4} key={v._id}>
+                <ServiceCard
+                  path={v.path.img}
+                  title={v.title}
+                  description={v.description}
+                ></ServiceCard>
+              </Grid>
+            ))
+          ) : (
+            <div style={{ width: "100px", margin: "auto" }}>
+              <MoonLoader
+                size={100}
+                color={"#111430"}
+                loading={true}
+              ></MoonLoader>
+            </div>
+          )}
         </Grid>
       </Container>
     </div>

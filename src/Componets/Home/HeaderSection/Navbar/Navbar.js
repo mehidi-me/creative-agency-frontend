@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 12px",
   },
   navItem: {
-    margin: "0 14px"
+    margin: "0 14px",
   },
   sectionDesktop: {
     display: "none",
@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
-  const history = useHistory()
-  const user = useState(JSON.parse(localStorage.getItem('userInfo')))[0]
-    const setPath = () => {
-        user && user.role ? history.push('/serviceall') : history.push('/order')
-    }
+  const history = useHistory();
+  const user = useState(JSON.parse(localStorage.getItem("userInfo")))[0];
+  const setPath = () => {
+    user && user.role ? history.push("/serviceall") : history.push("/order");
+  };
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -73,16 +73,21 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Button color="default" onClick={() => history.push('/')}>Home</Button>
+        <Button color="default" onClick={() => history.push("/")}>
+          Home
+        </Button>
       </MenuItem>
       <MenuItem>
-        <Button color="default">donation</Button>
+        <Button color="default">Our Services</Button>
       </MenuItem>
       <MenuItem>
-        <Button color="default" onClick={() => history.push('/event')}>events</Button>
+        <Button color="default">Our Work</Button>
       </MenuItem>
       <MenuItem>
-        <Button color="default">blog</Button>
+        <Button color="default">Client Review</Button>
+      </MenuItem>
+      <MenuItem>
+        <Button color="default">Contact Us</Button>
       </MenuItem>
       <MenuItem>
         <Button
@@ -103,14 +108,31 @@ const Navbar = () => {
         <Container>
           <Toolbar>
             <div className={classes.logo}>
-            <Link to="/"><img src={Logo} alt="logo" /></Link>
+              <Link to="/">
+                <img src={Logo} alt="logo" />
+              </Link>
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <Button className={classes.navItem} color="default" onClick={() => history.push('/')}>Home</Button>
-              <Button className={classes.navItem} color="default">donation</Button>
-              <Button className={classes.navItem} color="default" onClick={() => history.push('#contact')}>events</Button>
-              <Button className={classes.navItem} color="default">blog</Button>
+              <Button
+                className={classes.navItem}
+                color="default"
+                onClick={() => history.push("/")}
+              >
+                Home
+              </Button>
+              <Button className={classes.navItem} color="default">
+                Our Services
+              </Button>
+              <Button className={classes.navItem} color="default">
+                Our Work
+              </Button>
+              <Button className={classes.navItem} color="default">
+                Client Review
+              </Button>
+              <Button className={classes.navItem} color="default">
+                Contact Us
+              </Button>
               <Button
                 color="secondary"
                 variant="contained"
